@@ -48,7 +48,11 @@ export default function AIInsights() {
     }
 
     try {
-      const res = await fetch('/api/groq/openai/v1/chat/completions', {
+      const url = import.meta.env.DEV
+      ? '/api/groq/openai/v1/chat/completions'
+       : '/api/groq'
+
+      const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
